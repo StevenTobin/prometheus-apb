@@ -170,6 +170,23 @@
           name: grafana-data
         - mount_path: /var/log/grafana
           name: grafana-log
+    - env:
+      image: pierrevincent/k8s-grafana-watcher:latest
+      name: grafana-watcher
+      imagePullPolicy: IfNotPresent
+      args:
+        - '--logtostderr'
+      env:
+        - name: CONFIG_MAP_DASHBOARD_ANNOTATION
+          value: "org.aerogear.grafana.dashboard"
+        - name: CONFIG_MAP_DATASOURCE_ANNOTATION
+          value: "org.aerogear.grafana.datasource"
+        - name: GRAFANA_URL
+          value: "http://localhost:{{ grafana_port }}"
+        - name: GRAFANA_USERNAME
+          value: "developer"
+        - name: GRAFANA_PASSWORD
+          value: "asd"
     volumes:
       - name: '{{ grafana_ini_configmap_volume_name }}'
         config_map:
