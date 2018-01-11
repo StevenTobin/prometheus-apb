@@ -174,19 +174,21 @@
       image: pierrevincent/k8s-grafana-watcher:latest
       name: grafana-watcher
       imagePullPolicy: IfNotPresent
+      ports:
+      - containerPort: '{{ grafana_watcher_port }}'
       args:
         - '--logtostderr'
       env:
         - name: CONFIG_MAP_DASHBOARD_ANNOTATION
-          value: "org.aerogear.grafana.dashboard"
+          value: '{{ config_map_dashboard_annotation }}'
         - name: CONFIG_MAP_DATASOURCE_ANNOTATION
-          value: "org.aerogear.grafana.datasource"
+          value: '{{ config_map_datasource_annotation }}'
         - name: GRAFANA_URL
           value: "http://localhost:{{ grafana_port }}"
         - name: GRAFANA_USERNAME
-          value: "developer"
+          value: "root"
         - name: GRAFANA_PASSWORD
-          value: "asd"
+          value: "secret"
     volumes:
       - name: '{{ grafana_ini_configmap_volume_name }}'
         config_map:
