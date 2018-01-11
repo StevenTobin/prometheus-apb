@@ -17,6 +17,10 @@ grafana_datasources_configmap_volume_name: "grafana-datasources-configmap-volume
 grafana_dashboards_configmap_name: "grafana-dashboards-configmap"
 grafana_dashboards_configmap_volume_name: "grafana-dashboards-configmap-volume"
 grafana_proxy_port: 4181
+# Grafana watcher values
+grafana_watcher_port: 5715
+config_map_dashboard_annotation: org.aerogear.grafana.dashboard
+config_map_datasource_annotation: org.aerogear.grafana.datasource
 # OAuth Proxy values
 proxy_serviceaccount_name: "oauth-proxy"
 proxy_image: "docker.io/openshift/oauth-proxy"
