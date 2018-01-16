@@ -164,16 +164,14 @@
           name: '{{ grafana_ini_configmap_volume_name }}'
         - mount_path: /etc/grafana-datasources
           name: '{{ grafana_datasources_configmap_volume_name }}'
-        - mount_path: /etc/grafana-dashboards
-          name: '{{ grafana_dashboards_configmap_volume_name }}'
         - mount_path: /var/lib/grafana
           name: grafana-data
         - mount_path: /var/log/grafana
           name: grafana-log
     - env:
-      image: pierrevincent/k8s-grafana-watcher:latest
+      image: steventobin/k8s-grafana-watcher:latest
       name: grafana-watcher
-      imagePullPolicy: IfNotPresent
+      imagePullPolicy: Always
       ports:
       - containerPort: '{{ grafana_watcher_port }}'
       args:
